@@ -1,8 +1,15 @@
 package com.example.todolist.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="users")
 public class User {
 	
-	public int id;
+	@Id
+	public Long id;
 	
 	public String email;
 	
@@ -13,7 +20,7 @@ public class User {
 	public User() {
 	}
 
-	public User(int id, String email, String password, String dateCreated) {
+	public User(Long id, String email, String password, String dateCreated) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -21,11 +28,11 @@ public class User {
 		this.dateCreated = dateCreated;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

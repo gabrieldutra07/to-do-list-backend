@@ -9,6 +9,17 @@ public class List {
 	public int userId;
 	
 	public String dateCreated;
+	
+	public List() {
+	
+	}
+	
+	public List(int id, String title, int userId, String dateCreated) {
+		this.id = id;
+		this.title = title;
+		this.userId = userId;
+		this.dateCreated = dateCreated;
+	}
 
 	public int getId() {
 		return id;
