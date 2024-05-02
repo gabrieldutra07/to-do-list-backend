@@ -26,14 +26,9 @@ public class ListService {
 	
 	public User getUser(UserDTO u) throws Exception {
 		
-		User user = null;
+		Optional<User> user = repository.findByEmailAndPassword(u.getEmail(), u.getPassword());
 		
-		user = repository.findByEmailAndPassword(u.getEmail(), u.getPassword());
-		
-		if(user == null)
-	        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found");
-
-		return user;
+		return user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
 		
 	}
 	
