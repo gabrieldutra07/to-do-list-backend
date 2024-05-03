@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todolist.dto.ListDTO;
 import com.example.todolist.dto.UserDTO;
+import com.example.todolist.entity.Lists;
 import com.example.todolist.entity.User;
 import com.example.todolist.service.ListService;
 import com.example.todolist.service.UserService;
@@ -26,28 +28,28 @@ public class ListController {
 	private UserService userService;
 
 	@GetMapping("/get")
-	public ResponseEntity<List<ListDTO>> getList(@RequestBody UserDTO u) throws Exception {
+	public ResponseEntity<List<Lists>> getList(@RequestBody UserDTO u) throws Exception {
 		
 		User user = new User();
 		
-		user = userService.findUser(u);
+		user = userService.findUserByEmail(u);
 
-		List<ListDTO> l = service.getListFromUser(user);
+		List<Lists> l = service.getListFromUser(user);
 		
 		return ResponseEntity.ok().body(l);
 		
 	}
 	
-	@GetMapping("/create")
-	public ResponseEntity<List<ListDTO>> createList(@RequestBody UserDTO u, ListDTO list) throws Exception {
+	@PostMapping("/create")
+	public ResponseEntity<List<ListDTO>> createList(@RequestBody ListDTO l) throws Exception {
 		
 		User user = new User();
 		
-		user = userService.findUser(u);
+		user = userService.findUserById(l.getUserId());
 		
+		service.saveList(l);
 		
-		
-		return null;
+		return ResponseEntity.ok().build();
 		
 	}
 	

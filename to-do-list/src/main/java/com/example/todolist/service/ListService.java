@@ -1,12 +1,9 @@
 package com.example.todolist.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.example.todolist.dto.ListDTO;
 import com.example.todolist.entity.Lists;
@@ -19,20 +16,20 @@ public class ListService {
 	@Autowired
 	private ListRepository listRepository;
 	
-	public List<ListDTO> getListFromUser(User u) {
+	public List<Lists> getListFromUser(User u) {
 			
-		Optional<List<ListDTO>> l = listRepository.findByUserId(u.getId());
+	    List<Lists> l = listRepository.findByUserId(u.getId());
 			
-		return l.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "list not found"));
+		return l;
 			
 	}
 	
-	public void saveList(User u, ListDTO listDto) throws Exception {
+	public void saveList(ListDTO listDto) throws Exception {
 		
 		Lists list = new Lists();
 		
 		list.setTitle(listDto.getTitle());
-		list.setUserId(u.getId());
+		list.setUserId(listDto.getUserId());
 		
 		listRepository.save(list);
 		

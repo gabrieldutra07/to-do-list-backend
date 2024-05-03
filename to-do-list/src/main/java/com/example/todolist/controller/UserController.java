@@ -48,7 +48,7 @@ public class UserController {
 	@GetMapping("/findUser")
 	public ResponseEntity<User> findUser(@RequestBody UserDTO u) throws Exception {
 
-		User user = service.findUser(u);
+		User user = service.findUserByEmail(u);
 		
 		return ResponseEntity.ok().body(user);
 		
