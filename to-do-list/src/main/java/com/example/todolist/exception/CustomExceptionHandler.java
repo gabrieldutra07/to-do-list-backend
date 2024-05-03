@@ -12,11 +12,9 @@ public class CustomExceptionHandler {
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Object> handleResponseStatusException(ResponseStatusException ex) {
         // Verifica o status e personaliza a resposta com base no erro
-        if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorMessage(ex.getStatusCode().value(), "User not found - custom message"));
-        } else {
+       
             return ResponseEntity.status(ex.getStatusCode()).body(new ErrorMessage(ex.getStatusCode().value(), ex.getReason()));
-        }
+        
     }
 
     // Classe interna para estruturar a mensagem de erro

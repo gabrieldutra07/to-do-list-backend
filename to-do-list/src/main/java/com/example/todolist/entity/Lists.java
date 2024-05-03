@@ -16,17 +16,14 @@ public class Lists {
 	
 	public Long userId;
 	
-	public String dateCreated;
-	
 	public Lists() {
 	
 	}
 	
-	public Lists(Long id, String title, Long userId, String dateCreated) {
+	public Lists(Long id, String title, Long userId) {
 		this.id = id;
 		this.title = title;
 		this.userId = userId;
-		this.dateCreated = dateCreated;
 	}
 
 	public Long getId() {
@@ -52,15 +49,5 @@ public class Lists {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
-	public String getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(String dateCreated) {
-		this.dateCreated = dateCreated;
-	} 
-	
-	
 
 }

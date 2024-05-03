@@ -25,13 +25,13 @@ public class UserService {
 		
 	}
 	
-	public void saveUser(UserDTO u) throws Exception {
+	public User saveUser(UserDTO u) throws Exception {
 			
 			User user = new User();
 			user.setEmail(u.getEmail());
 			user.setPassword(u.getPassword());
 			
-			repository.save(user);
+			return repository.save(user);
 			
 		}
 	

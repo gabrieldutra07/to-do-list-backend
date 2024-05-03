@@ -3,6 +3,7 @@ package com.example.todolist.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,16 +42,19 @@ public class ListController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<List<ListDTO>> createList(@RequestBody ListDTO l) throws Exception {
+	public ResponseEntity createList(@RequestBody ListDTO l) throws Exception {
 		
 		User user = new User();
 		
 		user = userService.findUserById(l.getUserId());
 		
-		service.saveList(l);
+		Lists lists = new Lists();
 		
-		return ResponseEntity.ok().build();
+		lists = service.saveList(l);
+		
+		return new ResponseEntity(lists, HttpStatus.CREATED);
 		
 	}
+	
 	
 }

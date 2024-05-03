@@ -10,6 +10,8 @@ import com.example.todolist.entity.Lists;
 import com.example.todolist.entity.User;
 import com.example.todolist.repository.ListRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ListService {
 
@@ -24,14 +26,15 @@ public class ListService {
 			
 	}
 	
-	public void saveList(ListDTO listDto) throws Exception {
+	@Transactional
+	public Lists saveList(ListDTO listDto) throws Exception {
 		
 		Lists list = new Lists();
 		
 		list.setTitle(listDto.getTitle());
 		list.setUserId(listDto.getUserId());
 		
-		listRepository.save(list);
+		return listRepository.save(list);
 		
 	}
 	
