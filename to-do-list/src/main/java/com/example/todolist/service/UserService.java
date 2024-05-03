@@ -3,6 +3,7 @@ package com.example.todolist.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,14 +27,18 @@ public class UserService {
 	}
 	
 	public User saveUser(UserDTO u) throws Exception {
+		
+		try {
 			
 			User user = new User();
 			user.setEmail(u.getEmail());
 			user.setPassword(u.getPassword());
-			
 			return repository.save(user);
 			
-		}
+		} catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("Email already exists: " + u.getEmail(), e);
+        }
+	}
 	
 	public User findUserByEmail(UserDTO u) throws Exception {
 	  
