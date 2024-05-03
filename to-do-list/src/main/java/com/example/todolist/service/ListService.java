@@ -9,44 +9,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.todolist.dto.ListDTO;
-import com.example.todolist.dto.UserDTO;
 import com.example.todolist.entity.User;
-import com.example.todolist.repository.UserRepository;
+import com.example.todolist.repository.ListRepository;
 
 @Service
 public class ListService {
-	
+
 	@Autowired
-	private UserRepository repository;
+	private ListRepository listRepository;
 	
 	public List<ListDTO> getListFromUser(User u) {
-		return null;
-		
-	}
-	
-	public User getUser(UserDTO u) throws Exception {
-		
-		Optional<User> user = repository.findByEmailAndPassword(u.getEmail(), u.getPassword());
-		
-		return user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
-		
-	}
-	
-	public void saveUser(UserDTO u) throws Exception {
 			
-			User user = new User();
-			user.setEmail(u.getEmail());
-			user.setPassword(u.getPassword());
+			Optional<List<ListDTO>> l = listRepository.findByUserId(u.getId());
 			
-			repository.save(user);
+			return l.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "list not found"));
 			
 		}
-	
-	public User findUser(UserDTO u) throws Exception {
-	    // Supondo que o repositório é injetado e disponível como 'repository'
-	    Optional<User> optionalUser = repository.findByEmail(u.getEmail());
-
-	    return optionalUser.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
-	}
 
 }

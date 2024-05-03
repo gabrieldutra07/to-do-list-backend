@@ -2,7 +2,7 @@ package com.example.todolist.entity;
 
 public class List {
 	
-	public int id;
+	public Long id;
 	
 	public String title;
 	
@@ -14,18 +14,18 @@ public class List {
 	
 	}
 	
-	public List(int id, String title, int userId, String dateCreated) {
+	public List(Long id, String title, int userId, String dateCreated) {
 		this.id = id;
 		this.title = title;
 		this.userId = userId;
 		this.dateCreated = dateCreated;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
