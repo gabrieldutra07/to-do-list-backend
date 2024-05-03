@@ -1,20 +1,20 @@
 package com.example.todolist.entity;
 
-public class List {
+public class Lists {
 	
 	public Long id;
 	
 	public String title;
 	
-	public int userId;
+	public Long userId;
 	
 	public String dateCreated;
 	
-	public List() {
+	public Lists() {
 	
 	}
 	
-	public List(Long id, String title, int userId, String dateCreated) {
+	public Lists(Long id, String title, Long userId, String dateCreated) {
 		this.id = id;
 		this.title = title;
 		this.userId = userId;
@@ -37,11 +37,11 @@ public class List {
 		this.title = title;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
