@@ -21,5 +21,11 @@ public class TaskService {
 		return t;
 			
 	}
+	
+	public Tasks saveTask(Tasks t) {
+		
+	    return repository.save(t);
+			
+	}
 
 }
