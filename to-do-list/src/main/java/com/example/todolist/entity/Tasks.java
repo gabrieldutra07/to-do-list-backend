@@ -1,10 +1,18 @@
 package com.example.todolist.entity;
 
-public class Task {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Tasks {
 	
-	public int id;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long id;
 	
-	public String listId;
+	public Long listId;
 	
 	public String description;
 	
@@ -14,10 +22,10 @@ public class Task {
 	
 	public String completedAt;
 	
-	public Task() {
+	public Tasks() {
 	}
 
-	public Task(int id, String listId, String description, boolean isComplete, String dueDate, String completedAt) {
+	public Tasks(Long id, Long listId, String description, boolean isComplete, String dueDate, String completedAt) {
 		super();
 		this.id = id;
 		this.listId = listId;
@@ -27,19 +35,19 @@ public class Task {
 		this.completedAt = completedAt;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getListId() {
+	public Long getListId() {
 		return listId;
 	}
 
-	public void setListId(String listId) {
+	public void setListId(Long listId) {
 		this.listId = listId;
 	}
 
