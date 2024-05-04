@@ -33,6 +33,7 @@ public class UserService {
 			User user = new User();
 			user.setEmail(u.getEmail());
 			user.setPassword(u.getPassword());
+			user.setNameUser(u.getNameUser());
 			return repository.save(user);
 			
 		} catch (DataIntegrityViolationException e) {

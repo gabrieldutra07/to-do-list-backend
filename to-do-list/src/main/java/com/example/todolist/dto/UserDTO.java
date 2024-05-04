@@ -6,11 +6,21 @@ public class UserDTO {
 	
 	public String email;
 	public String password;
+	public String nameUser;
 	public List<ListDTO> lists;
 	
 	
 	public UserDTO() {
 	}
+	
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
+	}
+
 	
 	public List<ListDTO> getLists() {
 		return lists;

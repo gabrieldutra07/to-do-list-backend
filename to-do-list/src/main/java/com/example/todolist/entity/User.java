@@ -18,16 +18,19 @@ public class User {
 	
 	public String password;
 	
+	public String nameUser;
+	
 	
 	public User() {
 		
 	}
 
-	public User(Long id, String email, String password) {
+	public User(Long id, String email, String password, String nameUser) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
+		this.nameUser = nameUser;
 	}
 
 	public Long getId() {
@@ -36,6 +39,14 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
 	}
 
 	public String getEmail() {

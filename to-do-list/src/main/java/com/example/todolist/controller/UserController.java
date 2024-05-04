@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.example.todolist.dto.UserDTO;
 import com.example.todolist.entity.User;
 import com.example.todolist.service.UserService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/todolist/user")
 public class UserController {
@@ -25,17 +27,15 @@ public class UserController {
 	
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 	
-	
-	@GetMapping("/login")
-	public ResponseEntity<User> isAuthenticated(@RequestBody UserDTO u) throws Exception {
+    
+	@PostMapping("/login")
+	public ResponseEntity isAuthenticated(@RequestBody UserDTO u) throws Exception {
 		
 		User user = new User();
-		user.setEmail(u.getEmail());
-		user.setPassword(u.getPassword());
-
+		
 		user = service.getUser(u);
 		
-		return ResponseEntity.ok().body(user);
+		return ResponseEntity.ok().build();
 		
 	}
 	
@@ -44,9 +44,9 @@ public class UserController {
 
 		User user = new User();
 		
-		if (!Pattern.matches(EMAIL_REGEX, u.getEmail())) {
+		if (!Pattern.matches(EMAIL_REGEX, u.getEmail())) 
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid e-mail format.");
-        }
+        
 		
 		user = service.saveUser(u);
 		
