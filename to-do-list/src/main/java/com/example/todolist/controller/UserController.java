@@ -35,7 +35,7 @@ public class UserController {
 		
 		user = service.getUser(u);
 		
-		return ResponseEntity.ok().build();
+		return new ResponseEntity(user, HttpStatus.OK);
 		
 	}
 	
