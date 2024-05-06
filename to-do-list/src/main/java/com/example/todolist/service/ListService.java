@@ -47,6 +47,7 @@ public class ListService {
 	public void deleteList(Lists list) throws Exception {
 		
 		try {
+			
 			listRepository.delete(list);
 			
 		} catch (DataIntegrityViolationException e) {
@@ -60,6 +61,14 @@ public class ListService {
 		Optional<Lists> l = listRepository.findById(id);
 		
 		return l.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "list not found"));
+		
+	}
+
+	public Lists editList(Lists list, ListDTO listDto) {
+		
+		list.setTitle(listDto.getTitle());
+	
+	    return listRepository.save(list);
 		
 	}
 	

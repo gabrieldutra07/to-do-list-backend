@@ -8,12 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todolist.dto.ListDTO;
+import com.example.todolist.dto.TaskDTO;
 import com.example.todolist.entity.Lists;
 import com.example.todolist.entity.User;
 import com.example.todolist.service.ListService;
@@ -63,6 +65,19 @@ public class ListController {
 		service.deleteList(list);
 		
 		return ResponseEntity.noContent().build();
+		
+	}
+	
+	@PutMapping("/edit")
+	public ResponseEntity editTask(@RequestBody ListDTO listDto, @RequestParam("listId") Long listId) throws Exception {
+		
+		Lists list = new Lists();
+		
+		list = service.findListById(listId);
+		
+		list = service.editList(list, listDto);
+		
+		return new ResponseEntity(list, HttpStatus.OK);
 		
 	}
 	
