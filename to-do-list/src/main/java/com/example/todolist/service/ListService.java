@@ -1,5 +1,6 @@
 package com.example.todolist.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +22,9 @@ public class ListService {
 	@Autowired
 	private ListRepository listRepository;
 	
-	public List<Lists> getListFromUser(User u) {
+	public List<Lists> getListFromUser(Long id) {
 			
-	    List<Lists> l = listRepository.findByUserId(u.getId());
+	    List<Lists> l = listRepository.findByUserId(id);
 			
 		return l;
 			
@@ -36,8 +37,15 @@ public class ListService {
 		
 		list.setTitle(listDto.getTitle());
 		list.setUserId(listDto.getUserId());
+		list.setDateCreated(new Date());
 		
 		return listRepository.save(list);
+		
+	}
+	
+	public void deleteList(Lists list) throws Exception {
+		
+		listRepository.delete(list);
 		
 	}
 	

@@ -12,13 +12,13 @@ public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	
-	public String email;
+	private String email;
 	
-	public String password;
+	private String password;
 	
-	public String nameUser;
+	private String nameUser;
 	
 	
 	public User() {

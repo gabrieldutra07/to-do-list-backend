@@ -20,7 +20,7 @@ public class UserService {
 	
 	public User getUser(UserDTO u) throws Exception {
 		
-		Optional<User> user = repository.findByEmail(u.getEmail());
+		Optional<User> user = repository.findByEmailAndPassword(u.getEmail(), u.getPassword());
 		
 		return user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
 		
