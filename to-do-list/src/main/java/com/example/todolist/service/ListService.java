@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -45,7 +46,12 @@ public class ListService {
 	
 	public void deleteList(Lists list) throws Exception {
 		
-		listRepository.delete(list);
+		try {
+			listRepository.delete(list);
+			
+		} catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("Você não pode excluir uma lista com tarefas associadas.", null);
+        }
 		
 	}
 	

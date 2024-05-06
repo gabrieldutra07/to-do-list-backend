@@ -17,7 +17,6 @@ import com.example.todolist.dto.UserDTO;
 import com.example.todolist.entity.User;
 import com.example.todolist.service.UserService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/todolist/user")
 public class UserController {
@@ -53,15 +52,5 @@ public class UserController {
 		return new ResponseEntity(user, HttpStatus.CREATED);
 		
 	}
-	
-	@GetMapping("/findUser")
-	public ResponseEntity<User> findUser(@RequestBody UserDTO u) throws Exception {
-
-		User user = service.findUserByEmail(u);
-		
-		return ResponseEntity.ok().body(user);
-		
-	}
-	
 	
 }

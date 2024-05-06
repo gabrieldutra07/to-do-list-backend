@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.todolist.entity.Lists;
+import com.example.todolist.dto.TaskDTO;
 import com.example.todolist.entity.Tasks;
 import com.example.todolist.repository.TaskRepository;
 
@@ -30,6 +30,16 @@ public class TaskService {
 	
 	@Transactional
 	public Tasks saveTask(Tasks t) {
+		
+	    return repository.save(t);
+			
+	}
+	
+	public Tasks editTask(Tasks t, TaskDTO taskDto) {
+		
+		t.setComplete(taskDto.isComplete());
+		t.setDescription(taskDto.getDescription());
+		t.setListId(taskDto.getListId());
 		
 	    return repository.save(t);
 			

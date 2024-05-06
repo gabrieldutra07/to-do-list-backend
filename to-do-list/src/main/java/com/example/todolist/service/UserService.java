@@ -41,13 +41,6 @@ public class UserService {
         }
 	}
 	
-	public User findUserByEmail(UserDTO u) throws Exception {
-	  
-	    Optional<User> optionalUser = repository.findByEmail(u.getEmail());
-
-	    return optionalUser.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
-	}
-	
 	public User findUserById(Long id) throws Exception {
 		  
 	    Optional<User> optionalUser = repository.findById(id);

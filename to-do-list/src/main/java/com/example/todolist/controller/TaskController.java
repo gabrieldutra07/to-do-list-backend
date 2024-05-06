@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,6 +67,19 @@ public class TaskController {
 		taskService.deleteTask(task);
 		
 		return ResponseEntity.noContent().build();
+		
+	}
+	
+	@PutMapping("/edit")
+	public ResponseEntity editTask(@RequestBody TaskDTO taskDto, @RequestParam("taskId") Long taskId) throws Exception {
+		
+		Tasks task = new Tasks();
+		
+		task = taskService.findTaskById(taskId);
+		
+		task = taskService.editTask(task, taskDto);
+		
+		return new ResponseEntity(task, HttpStatus.OK);
 		
 	}
 
