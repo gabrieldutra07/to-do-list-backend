@@ -20,17 +20,20 @@ public class User {
 	
 	private String nameUser;
 	
+	private boolean confmail;
+	
 	
 	public User() {
 		
 	}
 
-	public User(Long id, String email, String password, String nameUser) {
+	public User(Long id, String email, String password, String nameUser, boolean confmail) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.nameUser = nameUser;
+		this.confmail = confmail;
 	}
 
 	public Long getId() {
@@ -39,6 +42,14 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public boolean isConfmail() {
+		return confmail;
+	}
+
+	public void setConfmail(boolean confmail) {
+		this.confmail = confmail;
 	}
 
 	public String getNameUser() {

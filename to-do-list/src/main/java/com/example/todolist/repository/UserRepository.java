@@ -8,7 +8,9 @@ import com.example.todolist.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	Optional<User> findByEmailAndPassword(String email, String password);
+	Optional<User> findByEmailAndPasswordAndConfmail(String email, String password, boolean confmail);
+	
+	Optional<User> findByEmail(String email);
 
 	Optional<User> findById(Long id);
 
