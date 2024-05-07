@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todolist.dto.ListDTO;
-import com.example.todolist.dto.TaskDTO;
+import com.example.todolist.dto.ListTaskCountDTO;
 import com.example.todolist.entity.Lists;
 import com.example.todolist.entity.User;
 import com.example.todolist.service.ListService;
@@ -52,6 +52,21 @@ public class ListController {
 		lists = service.saveList(l);
 		
 		return new ResponseEntity(lists, HttpStatus.CREATED);
+		
+	}
+	
+	@GetMapping("/getAllListsAndTasks")
+	public ResponseEntity getAllListsAndTasks(@RequestParam Long userId) throws Exception {
+		
+		User user = new User();
+		
+		user = userService.findUserById(userId);
+		
+		ListTaskCountDTO listTask = new ListTaskCountDTO();
+		
+		listTask = service.getListsAndTasks(userId);
+		
+		return new ResponseEntity(listTask, HttpStatus.OK);
 		
 	}
 	

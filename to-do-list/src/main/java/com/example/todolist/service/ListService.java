@@ -10,9 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.todolist.dao.ListAndTasksDAO;
 import com.example.todolist.dto.ListDTO;
+import com.example.todolist.dto.ListTaskCountDTO;
 import com.example.todolist.entity.Lists;
-import com.example.todolist.entity.User;
 import com.example.todolist.repository.ListRepository;
 
 import jakarta.transaction.Transactional;
@@ -43,6 +44,15 @@ public class ListService {
 		return listRepository.save(list);
 		
 	}
+	
+	public ListTaskCountDTO getListsAndTasks(Long userId) throws Exception {
+			
+			ListAndTasksDAO dao = new ListAndTasksDAO();
+			ListTaskCountDTO listTask = new ListTaskCountDTO();
+			listTask =  dao.getTasksAndLists(userId);
+			return listTask;
+			
+		}
 	
 	public void deleteList(Lists list) throws Exception {
 		

@@ -10,4 +10,5 @@ public interface ListRepository extends JpaRepository<Lists, Long> {
 	
     List<Lists> findByUserId(Long userId);
 
+
 }
