@@ -48,7 +48,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity save(@RequestBody UserDTO u) throws Exception {
+	public ResponseEntity<?> save(@RequestBody UserDTO u) throws Exception {
 
 		User user = new User();
 		
